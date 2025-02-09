@@ -142,18 +142,12 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ## **6. Deployment on AWS** 👨‍💻
 
-### **Jupyter Notebook Deployment on AWS EC2**
-
-This guide provides step-by-step instructions to set up and run a **Jupyter Notebook** on an **AWS EC2 instance** using the **AWS Free Tier**.
-
----
-
 ## **Launch an AWS EC2 Instance**  
 
 - **Go to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  
 - Click **"Launch Instance"**  
-- **Choose an AMI**: Select **Ubuntu 22.04 LTS (Free Tier Eligible)**  
-- **Instance Type**: Select **t2.micro** (Free Tier)  
+- **Choose an AMI**: Select **Ubuntu 22.04 LTS **  
+- **Instance Type**: Select **t2.micro**   
 - **Create Key Pair**:
   - **Key Name**: `healthcare`
   - **Format**: `.pem`  
@@ -215,7 +209,7 @@ scp -i "~/.ssh/healthcare.pem" healthcare.ipynb ubuntu@<your-ec2-public-ip>:/hom
 jupyter notebook --port=8888 --no-browser --allow-root
 ```
 
-- Access Jupyter from your browser:  
+- Access Jupyter from browser:  
 ```sh
 http://<your-ec2-public-ip>:8888/tree
 ```
@@ -236,22 +230,8 @@ sudo apt install screen -y
 screen -S jupyter
 jupyter notebook --port=8888 --no-browser --allow-root
 ```
-- Press `Ctrl + A`, then `D` to **detach**.
-- To **resume**:
-  ```sh
-  screen -r jupyter
-  ```
 
-- Auto-Start Jupyter on Reboot  
-```sh
-crontab -e
-```
-Add:
-```sh
-@reboot screen -dmS jupyter jupyter notebook --port=8888 --no-browser --allow-root
-```
 
----
 
 
 

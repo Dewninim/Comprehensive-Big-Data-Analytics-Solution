@@ -141,18 +141,118 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 ---
 
 ## **6. Deployment on AWS** 👨‍💻
-### **Infrastructure Setup**
-1. **EC2 Instance**:
-   - Deployed the PySpark job on a dedicated EC2 instance for continuous processing.
-   - Configured IAM roles to grant access to S3 and EMR.
-2. **AWS Lambda for Automation**:
-   - Set up a Lambda function triggered by new data uploads to S3.
-   - Lambda function starts the EMR job automatically.
-3. **AWS Step Functions**:
-   - Managed workflow execution using Step Functions for monitoring job states.
-4. **API Gateway & Flask API**:
-   - Developed a REST API with Flask to retrieve processed insights.
-   - Deployed on AWS Lambda + API Gateway.
+
+### **Jupyter Notebook Deployment on AWS EC2**
+
+This guide provides step-by-step instructions to set up and run a **Jupyter Notebook** on an **AWS EC2 instance** using the **AWS Free Tier**.
 
 ---
+
+## **Launch an AWS EC2 Instance**  
+
+- **Go to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  
+- Click **"Launch Instance"**  
+- **Choose an AMI**: Select **Ubuntu 22.04 LTS (Free Tier Eligible)**  
+- **Instance Type**: Select **t2.micro** (Free Tier)  
+- **Create Key Pair**:
+  - **Key Name**: `healthcare`
+  - **Format**: `.pem`  
+  - Click **Create & Download**  
+- **Configure Security Group**:
+  - **Allow SSH (22):** Your IP  
+  - **Allow Custom TCP (8888):** Anywhere (0.0.0.0/0)  
+- **Launch the Instance** and wait until it's running.  
+
+---
+
+## **Connect to EC2 via SSH**  
+
+- Move & Set Permissions for Key Pair  
+```sh
+mv ~/Downloads/healthcare.pem ~/.ssh/
+chmod 400 ~/.ssh/healthcare.pem
+```
+
+- SSH Into the Instance  
+```sh
+ssh -i "~/.ssh/healthcare.pem" ubuntu@<your-ec2-public-ip>
+```
+Replace `<your-ec2-public-ip>` with your instance’s **public IPv4 address**.
+
+---
+
+## **Install Jupyter Notebook**  
+
+```sh
+sudo apt update -y
+sudo apt install python3-pip -y
+pip3 install jupyter
+```
+
+---
+
+## **Configure Jupyter for Remote Access**  
+
+```sh
+jupyter notebook --generate-config
+echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
+```
+
+---
+
+## **Upload `healthcare.ipynb` to EC2**  
+
+- From your **local machine**, run:  
+```sh
+scp -i "~/.ssh/healthcare.pem" healthcare.ipynb ubuntu@<your-ec2-public-ip>:/home/ubuntu/
+```
+
+---
+
+## **Start Jupyter Notebook**  
+
+```sh
+jupyter notebook --port=8888 --no-browser --allow-root
+```
+
+- Access Jupyter from your browser:  
+```sh
+http://<your-ec2-public-ip>:8888/tree
+```
+- Use the **token** shown in the terminal to log in.
+
+- For JupyterLab:
+```sh
+http://<your-ec2-public-ip>:8888/lab
+```
+
+---
+
+## **Keep Jupyter Running After Logout**  
+
+- Install & Use `screen`  
+```sh
+sudo apt install screen -y
+screen -S jupyter
+jupyter notebook --port=8888 --no-browser --allow-root
+```
+- Press `Ctrl + A`, then `D` to **detach**.
+- To **resume**:
+  ```sh
+  screen -r jupyter
+  ```
+
+- Auto-Start Jupyter on Reboot  
+```sh
+crontab -e
+```
+Add:
+```sh
+@reboot screen -dmS jupyter jupyter notebook --port=8888 --no-browser --allow-root
+```
+
+---
+
+
+
 

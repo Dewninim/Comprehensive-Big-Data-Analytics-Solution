@@ -132,7 +132,7 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 ---
 
 ## **5. Data Visualization** 📈
-- **Use Notebook**: `22UG2-0013_Visualization.ipynb`
+
 - **Visualizations Include:**
   - Age distribution histogram.
   - Billing amount by medical condition (bar chart).

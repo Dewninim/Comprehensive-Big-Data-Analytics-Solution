@@ -142,7 +142,7 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ## **6. Deployment on AWS** 👨‍💻
 
-## **Launch an AWS EC2 Instance**  
+### **Launch an AWS EC2 Instance**  
 
 - **Go to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  
 - Click **"Launch Instance"**  
@@ -159,7 +159,7 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ---
 
-## **Connect to EC2 via SSH**  
+### **Connect to EC2 via SSH**  
 
 - Move & Set Permissions for Key Pair  
 ```sh
@@ -175,7 +175,7 @@ Replace `<your-ec2-public-ip>` with your instance’s **public IPv4 address**.
 
 ---
 
-## **Install Jupyter Notebook**  
+### **Install Jupyter Notebook**  
 
 ```sh
 sudo apt update -y
@@ -185,7 +185,7 @@ pip3 install jupyter
 
 ---
 
-## **Configure Jupyter for Remote Access**  
+### **Configure Jupyter for Remote Access**  
 
 ```sh
 jupyter notebook --generate-config
@@ -194,7 +194,7 @@ echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 
 ---
 
-## **Upload `healthcare.ipynb` to EC2**  
+### **Upload `healthcare.ipynb` to EC2**  
 
 - From your **local machine**, run:  
 ```sh
@@ -203,7 +203,7 @@ scp -i "~/.ssh/healthcare.pem" healthcare.ipynb ubuntu@<your-ec2-public-ip>:/hom
 
 ---
 
-## **Start Jupyter Notebook**  
+### **Start Jupyter Notebook**  
 
 ```sh
 jupyter notebook --port=8888 --no-browser --allow-root
@@ -222,7 +222,7 @@ http://<your-ec2-public-ip>:8888/lab
 
 ---
 
-## **Keep Jupyter Running After Logout**  
+### **Keep Jupyter Running After Logout**  
 
 - Install & Use `screen`  
 ```sh

@@ -157,7 +157,6 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
   - **Allow Custom TCP (8888):** Anywhere (0.0.0.0/0)  
 - **Launch the Instance** and wait until it's running.  
 
----
 
 ### **Connect to EC2 via SSH**  
 
@@ -173,7 +172,6 @@ ssh -i "~/.ssh/healthcare.pem" ubuntu@<your-ec2-public-ip>
 ```
 Replace `<your-ec2-public-ip>` with your instance’s **public IPv4 address**.
 
----
 
 ### **Install Jupyter Notebook**  
 
@@ -183,7 +181,6 @@ sudo apt install python3-pip -y
 pip3 install jupyter
 ```
 
----
 
 ### **Configure Jupyter for Remote Access**  
 
@@ -192,7 +189,6 @@ jupyter notebook --generate-config
 echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 ```
 
----
 
 ### **Upload `healthcare.ipynb` to EC2**  
 
@@ -201,7 +197,6 @@ echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 scp -i "~/.ssh/healthcare.pem" healthcare.ipynb ubuntu@<your-ec2-public-ip>:/home/ubuntu/
 ```
 
----
 
 ### **Start Jupyter Notebook**  
 
@@ -220,7 +215,6 @@ http://<your-ec2-public-ip>:8888/tree
 http://<your-ec2-public-ip>:8888/lab
 ```
 
----
 
 ### **Keep Jupyter Running After Logout**  
 

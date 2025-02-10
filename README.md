@@ -142,6 +142,13 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ## **6. Deployment on AWS** 👨‍💻
 
+###Create an AWS S3 Bucket
+
+- Go to the AWS S3 Console and click "Create Bucket".
+- Choose a unique bucket name.
+- Configure permissions to control access.
+- Complete the setup and create the bucket to store healthcare data.
+
 ### **Launch an AWS EC2 Instance**  
 
 - **Went to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  

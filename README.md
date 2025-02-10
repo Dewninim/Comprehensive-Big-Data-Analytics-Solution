@@ -144,21 +144,21 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ### **Launch an AWS EC2 Instance**  
 
-- **Go to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  
-- Click **"Launch Instance"**  
+- **Went to AWS EC2 Console** → [EC2 Dashboard](https://console.aws.amazon.com/ec2)  
+- Clicked **"Launch Instance"**  
 - **Choose an AMI**: Select **Ubuntu 22.04 LTS **  
 - **Instance Type**: Select **t2.micro**   
-- **Create Key Pair**:
+- **Created Key Pair**:
   - **Key Name**: `healthcare`
   - **Format**: `.pem`  
-  - Click **Create & Download**  
-- **Configure Security Group**:
-  - **Allow SSH (22):** Your IP  
-  - **Allow Custom TCP (8888):** Anywhere (0.0.0.0/0)  
-- **Launch the Instance** and wait until it's running.  
+  - Clicked **Create & Download**  
+- **Configured Security Group**:
+  - **Allowed SSH (22):** Your IP  
+  - **Allowed Custom TCP (8888):** Anywhere (0.0.0.0/0)  
+- **Launched the Instance** and wait until it's running.  
 
 
-### **Connect to EC2 via SSH**  
+### **Connected to EC2 via SSH**  
 
 - Move & Set Permissions for Key Pair  
 ```sh
@@ -173,7 +173,7 @@ ssh -i "~/.ssh/healthcare.pem" ubuntu@<your-ec2-public-ip>
 Replace `<your-ec2-public-ip>` with your instance’s **public IPv4 address**.
 
 
-### **Install Jupyter Notebook**  
+### **Installed Jupyter Notebook**  
 
 ```sh
 sudo apt update -y
@@ -182,7 +182,7 @@ pip3 install jupyter
 ```
 
 
-### **Configure Jupyter for Remote Access**  
+### **Configured Jupyter for Remote Access**  
 
 ```sh
 jupyter notebook --generate-config
@@ -190,7 +190,7 @@ echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 ```
 
 
-### **Upload `healthcare.ipynb` to EC2**  
+### **Uploaded `healthcare.ipynb` to EC2**  
 
 - From your **local machine**, run:  
 ```sh
@@ -198,17 +198,17 @@ scp -i "~/.ssh/healthcare.pem" healthcare.ipynb ubuntu@<your-ec2-public-ip>:/hom
 ```
 
 
-### **Start Jupyter Notebook**  
+### **Started Jupyter Notebook**  
 
 ```sh
 jupyter notebook --port=8888 --no-browser --allow-root
 ```
 
-- Access Jupyter from browser:  
+- Accessed Jupyter from browser:  
 ```sh
 http://<your-ec2-public-ip>:8888/tree
 ```
-- Use the **token** shown in the terminal to log in.
+- Useed the **token** shown in the terminal to log in.
 
 - For JupyterLab:
 ```sh
@@ -216,7 +216,7 @@ http://<your-ec2-public-ip>:8888/lab
 ```
 
 
-### **Keep Jupyter Running After Logout**  
+### **Kept Jupyter Running After Logout**  
 
 - Install & Use `screen`  
 ```sh

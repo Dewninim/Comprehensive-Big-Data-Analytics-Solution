@@ -142,7 +142,7 @@ aws emr terminate-clusters --cluster-ids <your-cluster-id>
 
 ## **6. Deployment on AWS** 👨‍💻
 
-###Create an AWS S3 Bucket
+### Create an AWS S3 Bucket
 
 - Go to the AWS S3 Console and click "Create Bucket".
 - Choose a unique bucket name.

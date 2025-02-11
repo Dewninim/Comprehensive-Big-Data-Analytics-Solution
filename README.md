@@ -7,6 +7,7 @@ The dataset consists of **55,500 patient records** with the following key attrib
 - **Medical Details**: Medical Condition, Date of Admission, Discharge Date, Medication, Test Results
 - **Healthcare Providers**: Doctor, Hospital, Insurance Provider
 - **Billing & Administration**: Billing Amount, Room Number, Admission Type
+  
 
 ### **Project Use Case**
 #### **Problem:**
